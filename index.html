@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Geomatics Web Page</title>
+    <style>
+	/* Mobil Uyumluluk (Telefon Ekranları İçin) */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* İki sütunu alt alta dizer */
+            }
+            header {
+                flex-direction: column; /* Başlık ve logoları alt alta alır */
+                text-align: center;
+                padding: 30px 15px;
+            }
+            .header-text {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            nav ul {
+                flex-direction: column; /* Menü linklerini alt alta dizer */
+                padding: 0;
+            }
+            .form-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .form-row label {
+                margin-bottom: 5px;
+            }
+        }
+        /* Genel Ayarlar ve Tema Renkleri */
+        body {
+            background-color: #050d1f; 
+            color: #FFFFFF; 
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header (Üst Başlık) */
+        header {
+            background-image: linear-gradient(rgba(7, 18, 42, 0.5), rgba(11, 29, 66, 0.9)), url('1763071604288.jfif');
+            background-size: cover;
+            background-position: center;
+            padding: 60px 40px; 
+            border-bottom: 4px solid #FFD700;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center; 
+        }
+
+        .header-text {
+            text-align: left; 
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3em; 
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8); 
+        }
+
+        header h2 {
+            margin: 10px 0 0 0;
+            font-size: 1.4em;
+            font-weight: normal;
+            color: #FFD700; 
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+
+        /* Logoların Bulunduğu Alan */
+        .header-logos {
+            display: flex;
+            gap: 20px; 
+        }
+
+        .header-logos img {
+            height: 110px; 
+            width: auto;
+            border-radius: 50%; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.6); 
+        }
+
+        /* Navigasyon Menüsü */
+        nav {
+            background-color: #07122A;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex; 
+            justify-content: flex-start;
+            padding-left: 20px;
+        }
+        
+        nav li a {
+            display: block;
+            color: #FFFFFF;
+            font-weight: bold;
+            padding: 15px 20px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav li a:hover {
+            background-color: #FFD700;
+            color: #0B1D42; 
+        }
+
+        /* İki Sütunlu Sayfa Düzeni */
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        main {
+            flex: 7; 
+        }
+
+        aside {
+            flex: 3; 
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Bölüm Kutuları Tasarımı */
+        .section-box {
+            background-color: #0B1D42;
+            border: 1px solid #1a3673;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .section-box h2 {
+            background-color: #FFD700; 
+            color: #0B1D42; 
+            margin: 0;
+            padding: 10px 15px;
+            font-size: 1.2em;
+        }
+
+        .section-content {
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        /* Tablo ve Caption Tasarımı */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        caption {
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding-bottom: 10px;
+            text-align: left;
+        }
+        
+        th, td {
+            border: 1px solid #1a3673;
+            padding: 10px;
+            text-align: left;
+            font-size: 0.9em;
+        }
+        
+        th {
+            background-color: #07122A;
+            color: #FFD700; 
+        }
+
+        tr:nth-child(even) {
+            background-color: #0a1733; 
+        }
+
+        /* Listeler ve Vurgular */
+        .highlight-text {
+            background-color: #FFD700;
+            color: #0B1D42;
+            padding: 2px 4px;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+
+        a { color: #FFD700; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Form Elemanları */
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .form-row label { width: 120px; }
+        .form-row input[type="text"] { padding: 6px; flex: 1; max-width: 250px; }
+        
+        .submit-btn {
+            background-color: #FFD700;
+            color: #0B1D42;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius: 4px;
+        }
+
+        /* Iframe */
+        iframe {
+            width: 100%;
+            height: 200px;
+            border: 2px solid #1a3673;
+            border-radius: 4px;
+            background-color: #07122A; 
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #07122A;
+            color: #7d93c7;
+            font-size: 0.9em;
+            margin-top: 20px;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-text">
+            <h1>Haktan Çetin</h1>
+            <h2>Geomatics Engineering Student</h2>
+        </div>
+        
+        <div class="header-logos">
+            <img src="BÖLÜM LOGO.png" alt="Geomatics Engineering Logo">
+            <img src="WhatsApp Görsel 2025-09-29 saat 13.07.43_3bc40508.jpg" alt="Geomatik Topluluğu Logo">
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#interests">Interests</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        
+        <main>
+            <section id="about" class="section-box">
+                <h2>About Me</h2>
+                <div class="section-content">
+                    <p>Hello! I'm Haktan, a Geomatics Engineering student with a strong interest in spatial data, maps, and how geospatial technologies can be used to solve real-world problems.</p>
+                    <p>I enjoy learning new software, working with geographic data and exploring how <span class="highlight-text">CityGML and 3D modeling</span> contribute to a more sustainable future. In my free time, I like discovering new places and following sports.</p>
+                </div>
+            </section>
+
+            <section id="courses" class="section-box">
+                <h2>Courses This Semester</h2>
+                <div class="section-content">
+                    <table>
+                        <caption>Courses This Semester</caption>
+                        <tr>
+                            <th>Course Code</th>
+                            <th>Course Name</th>
+                            <th>Type</th>
+                            <th>ECTS</th>
+                        </tr>
+                        <tr>
+                            <td>GEO305</td>
+                            <td>Photogrammetry</td>
+                            <td>Compulsory</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>GEO411</td>
+                            <td>Geographic Information Systems</td>
+                            <td>Compulsory</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>GEO201</td>
+                            <td>Remote Sensing</td>
+                            <td>Compulsory</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>GEO402</td>
+                            <td>Web Mapping Applications</td>
+                            <td>Elective</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: right; color: #FFD700; font-weight: bold;">Total ECTS:</td>
+                            <td style="color: #FFD700; font-weight: bold;">23</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <section id="interests" class="section-box">
+                <h2>My Geomatics Interests</h2>
+                <div class="section-content">
+                    <ul>
+                        <li>Geographic Information Systems (GIS)</li>
+                        <li>Remote Sensing</li>
+                        <li>Spatial data analysis and visualization</li>
+                        <li>CityGML 3D City Modeling</li>
+                        <li>Outdoor activities related to geomatics, such as:
+                            <ul>
+                                <li>Field data collection</li>
+                                <li>Drone mapping and aerial photography</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section-box">
+                <h2>My Web GIS Learning Plan</h2>
+                <div class="section-content">
+                    <ol type="1">
+                        <li>Strengthen my HTML, CSS and JavaScript skills.</li>
+                        <li>Learn to use open-source Web GIS tools (e.g., Leaflet or OpenLayers).</li>
+                        <li>Practice publishing interactive maps with real geospatial data.</li>
+                        <li>Complete a small Web GIS project by the end of the semester.</li>
+                        <li>Share my work on this personal website and continue improving it.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="contact" class="section-box">
+                <h2>Contact Me</h2>
+                <div class="section-content">
+                    <!-- E-POSTA ADRESİ BURADA GÜNCELLENDİ -->
+                    <p style="margin-top: 0; margin-bottom: 20px; font-size: 0.95em; color: #ccc;">
+                        <em>To reach me directly, please email: 
+                        <a href="mailto:220406073@ogr.ikcu.edu.tr" style="font-weight: bold; font-size: 1.1em;">220406073@ogr.ikcu.edu.tr</a></em>
+                    </p>
+                    
+                    <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+                        <div>
+                            <form action="#">
+                                <div class="form-row">
+                                    <label for="name">Name:</label>
+                                    <input type="text" id="name" name="name" placeholder="Your name">
+                                </div>
+                                <div class="form-row">
+                                    <label for="std-num">Student Number:</label>
+                                    <input type="text" id="std-num" name="std-num" placeholder="e.g. 123456">
+                                </div>
+                                <input type="submit" value="Submit" class="submit-btn">
+                            </form>
+                        </div>
+                        <div>
+                            <p style="margin-top: 0; margin-bottom: 10px;"><strong>Favorite Geomatics Field:</strong></p>
+                            <input type="radio" id="field1" name="fav_field" value="GIS">
+                            <label for="field1">GIS</label><br>
+                            <input type="radio" id="field2" name="fav_field" value="Remote Sensing">
+                            <label for="field2">Remote Sensing</label><br>
+                            <input type="radio" id="field3" name="fav_field" value="Surveying">
+                            <label for="field3">Surveying</label><br>
+                            <input type="radio" id="field4" name="fav_field" value="Photogrammetry">
+                            <label for="field4">Photogrammetry</label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside>
+            <section class="section-box">
+                <h2>Useful Links</h2>
+                <div class="section-content">
+                    <p>💼 <a href="https://www.linkedin.com/in/haktancetin" target="_blank">LinkedIn Profile</a><br>
+                    <span style="font-size: 0.85em; color: #aaa;">My professional network.</span></p>
+
+                    <p>🌐 <a href="https://qgis.org/" target="_blank">QGIS</a><br>
+                    <span style="font-size: 0.85em; color: #aaa;">Open source GIS software.</span></p>
+                    
+                    <p>🗺️ <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a><br>
+                    <span style="font-size: 0.85em; color: #aaa;">A free and editable map of the world.</span></p>
+                    
+                    <p>🎓 <a href="https://ikcu.edu.tr/" target="_blank">İzmir Kâtip Çelebi University</a><br>
+                    <span style="font-size: 0.85em; color: #aaa;">University webpage.</span></p>
+                </div>
+            </section>
+
+            <section class="section-box">
+                <h2>Embedded Page / Iframe</h2>
+                <div class="section-content" style="padding: 10px;">
+                    <iframe src="details.html"></iframe>
+                </div>
+            </section>
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Haktan Çetin &ndash; Web GIS</p>
+    </footer>
+
+</body>
+</html>
