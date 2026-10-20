@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Geomatics Web Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #030814; }
+        ::-webkit-scrollbar-thumb { background: #FFD700; border-radius: 6px; border: 3px solid #030814; }
+        ::-webkit-scrollbar-thumb:hover { background: #e5c100; }
+
+        body {
+            background: radial-gradient(circle at top, #0a1b40 0%, #030814 100%); 
+            color: #FFFFFF; 
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        header {
+            background-image: linear-gradient(rgba(3, 8, 20, 0.4), rgba(5, 13, 31, 0.95)), url('WhatsApp Image 2026-10-20 at 23.09.47.jpeg');
+            background-size: cover;
+            background-position: center 65%; 
+            padding: 120px 50px 80px 50px; 
+            border-bottom: 3px solid #FFD700;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .header-text { text-align: left; animation: fadeUp 1s ease-out; }
+        header h1 { margin: 0; font-size: 3.8em; color: #FFFFFF; font-weight: 700; letter-spacing: -1px; text-shadow: 0px 4px 15px rgba(0,0,0,0.9); }
+        header h2 { margin: 10px 0 0 0; font-size: 1.5em; font-weight: 300; color: #FFD700; letter-spacing: 2px; text-transform: uppercase; }
+
+        .header-logos { display: flex; gap: 25px; animation: fadeUp 1s ease-out 0.3s backwards; }
+        .header-logos img { height: 120px; width: auto; border-radius: 50%; box-shadow: 0 0 25px rgba(255, 215, 0, 0.2); border: 2px solid rgba(255, 215, 0, 0.5); animation: float 4s ease-in-out infinite; transition: all 0.3s; }
+        .header-logos img:nth-child(2) { animation-delay: 2s; }
+        .header-logos img:hover { transform: scale(1.15) !important; box-shadow: 0 0 35px rgba(255, 215, 0, 0.8); border-color: #FFD700; animation-play-state: paused; }
+
+        nav { background: rgba(7, 18, 42, 0.8); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255, 215, 0, 0.3); position: sticky; top: 0; z-index: 1000; }
+        nav ul { list-style-type: none; padding: 0; margin: 0; display: flex; justify-content: center; }
+        nav li a { display: block; color: #FFFFFF; font-weight: 500; font-size: 1.1em; padding: 18px 30px; text-decoration: none; transition: 0.4s; position: relative; }
+        nav li a::after { content: ''; position: absolute; width: 0%; height: 3px; bottom: 0; left: 0; background-color: #FFD700; transition: width 0.3s ease; }
+        nav li a:hover::after { width: 100%; }
+        nav li a:hover { color: #FFD700; background: rgba(255,215,0,0.05); }
+
+        .container { display: flex; max-width: 1200px; margin: 50px auto; gap: 40px; padding: 0 20px; animation: fadeUp 1s ease-out 0.6s backwards; }
+        main { flex: 7; }
+        aside { flex: 3; display: flex; flex-direction: column; gap: 40px; }
+
+        .section-box { background: rgba(11, 29, 66, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #FFD700; border-radius: 12px; margin-bottom: 40px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.3); transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s; }
+        .section-box:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(255, 215, 0, 0.1); border-color: rgba(255, 215, 0, 0.5); }
+        .section-box h2 { background: linear-gradient(90deg, rgba(255,215,0,0.1) 0%, transparent 100%); color: #FFD700; margin: 0; padding: 20px 25px; font-size: 1.4em; font-weight: 700; letter-spacing: 1px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .section-content { padding: 30px 25px; line-height: 1.8; color: #d1d9e6; font-weight: 300; }
+
+        table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); }
+        caption { color: #FFD700; font-weight: 700; font-size: 1.2em; padding-bottom: 15px; text-align: left; text-transform: uppercase; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        th { background-color: rgba(0,0,0,0.3); color: #FFD700; font-weight: 700; }
+        tr:nth-child(even) { background-color: rgba(255,255,255,0.02); }
+        tr:hover { background-color: rgba(255, 215, 0, 0.08); } 
+        tr:last-child td { border-bottom: none; }
+
+        .highlight-text { background: linear-gradient(120deg, rgba(255,215,0,0.3) 0%, rgba(255,215,0,0) 100%); color: #FFD700; padding: 2px 8px; font-weight: 700; border-radius: 4px; border-left: 2px solid #FFD700; }
+        a { color: #FFD700; text-decoration: none; font-weight: 500; transition: 0.3s; }
+        a:hover { color: #FFFFFF; text-shadow: 0 0 10px #FFD700; }
+
+        .form-row { display: flex; align-items: center; margin-bottom: 20px; }
+        .form-row label { width: 140px; font-weight: 500; color: #FFFFFF; }
+        .form-row input[type="text"] { padding: 12px 15px; flex: 1; max-width: 250px; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.2); color: white; border-radius: 6px; font-family: 'Montserrat', sans-serif; transition: all 0.3s; }
+        .form-row input[type="text"]::placeholder { color: rgba(255,255,255,0.3); }
+        .form-row input[type="text"]:focus { outline: none; border-color: #FFD700; background: rgba(0, 0, 0, 0.5); box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); }
+        input[type="radio"] { accent-color: #FFD700; transform: scale(1.2); margin-right: 8px; }
+        
+        .submit-btn { background: linear-gradient(45deg, #FFD700, #FFA500); color: #0B1D42; border: none; padding: 12px 30px; font-size: 1.1em; font-weight: 700; cursor: pointer; margin-top: 25px; border-radius: 30px; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4); }
+        .submit-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6); color: #000; }
+
+        iframe { width: 100%; height: 250px; border: none; border-radius: 8px; background: rgba(0,0,0,0.2); box-shadow: inset 0 0 10px rgba(0,0,0,0.5); transition: 0.3s; }
+        iframe:hover { box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+
+        .photo-gallery { display: flex; gap: 15px; margin-top: 10px; }
+        .photo-gallery img { width: 47%; height: 180px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 5px 15px rgba(0,0,0,0.5); transition: 0.3s; }
+        .photo-gallery img:hover { transform: scale(1.05); border-color: #FFD700; }
+        .photo-credit { margin-top: 15px; font-size: 0.85em; color: rgba(255, 255, 255, 0.4); font-style: italic; text-align: center; font-weight: 300; letter-spacing: 0.5px; }
+
+        footer { text-align: center; padding: 30px; background: rgba(3, 8, 20, 0.9); color: #526b9e; font-size: 0.9em; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); }
+
+        @media (max-width: 768px) {
+            .container { flex-direction: column; margin-top: 20px; }
+            header { flex-direction: column; text-align: center; padding: 40px 20px; }
+            .header-text { text-align: center; margin-bottom: 30px; }
+            header h1 { font-size: 2.5em; }
+            .header-logos img { height: 90px; }
+            nav ul { flex-direction: column; }
+            nav li a::after { display: none; }
+            .form-row { flex-direction: column; align-items: flex-start; }
+            .form-row label { margin-bottom: 8px; }
+            .form-row input[type="text"] { max-width: 100%; width: 90%; }
+            .photo-gallery { flex-direction: column; }
+            .photo-gallery img { width: 100%; height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-text">
+            <h1>Haktan Çetin</h1>
+            <h2>Geomatics Engineering Student</h2>
+        </div>
+        
+        <div class="header-logos">
+            <img src="BÖLÜM LOGO.png" alt="Geomatics Engineering Logo">
+            <img src="WhatsApp Görsel 2025-09-29 saat 13.07.43_3bc40508.jpg" alt="Geomatik Topluluğu Logo">
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#interests">Interests</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        
+        <main>
+            <section id="about" class="section-box">
+                <h2>About Me</h2>
+                <div class="section-content">
+                    <p>Hello! I'm Haktan, a Geomatics Engineering student with a strong interest in spatial data, maps, and how geospatial technologies can be used to solve real-world problems.</p>
+                    <p>I enjoy learning new software, working with geographic data and exploring how <span class="highlight-text">CityGML and 3D modeling</span> contribute to a more sustainable future. In my free time, I like discovering new places and following sports.</p>
+                </div>
+            </section>
+
+            <section id="courses" class="section-box">
+                <h2>Courses This Semester</h2>
+                <div class="section-content">
+                    <table>
+                        <caption>Courses This Semester</caption>
+                        <tr>
+                            <th>Course Code</th>
+                            <th>Course Name</th>
+                            <th>Type</th>
+                            <th>ECTS</th>
+                        </tr>
+                        <tr>
+                            <td>GEO305</td>
+                            <td>Photogrammetry</td>
+                            <td>Compulsory</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>GEO411</td>
+                            <td>Geographic Information Systems</td>
+                            <td>Compulsory</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>GEO201</td>
+                            <td>Remote Sensing</td>
+                            <td>Compulsory</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>GEO402</td>
+                            <td>Web Mapping Applications</td>
+                            <td>Elective</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: right; color: #FFD700; font-weight: 700;">Total ECTS:</td>
+                            <td style="color: #FFD700; font-weight: 700;">23</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <section id="interests" class="section-box">
+                <h2>My Geomatics Interests</h2>
+                <div class="section-content">
+                    <ul style="line-height: 2;">
+                        <li>Geographic Information Systems (GIS)</li>
+                        <li>Remote Sensing</li>
+                        <li>Spatial data analysis and visualization</li>
+                        <li>CityGML 3D City Modeling</li>
+                        <li>Outdoor activities related to geomatics, such as:
+                            <ul style="margin-top: 10px; color: #FFD700;">
+                                <li><span style="color: #d1d9e6;">Field data collection</span></li>
+                                <li><span style="color: #d1d9e6;">Drone mapping and aerial photography</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section-box">
+                <h2>My Web GIS Learning Plan</h2>
+                <div class="section-content">
+                    <ol type="1" style="line-height: 2;">
+                        <li>Strengthen my HTML, CSS and JavaScript skills.</li>
+                        <li>Learn to use open-source Web GIS tools (e.g., Leaflet or OpenLayers).</li>
+                        <li>Practice publishing interactive maps with real geospatial data.</li>
+                        <li>Complete a small Web GIS project by the end of the semester.</li>
+                        <li>Share my work on this personal website and continue improving it.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="contact" class="section-box">
+                <h2>Contact Me</h2>
+                <div class="section-content">
+                    <p style="margin-top: 0; margin-bottom: 30px; color: #a9b8d4;">
+                        <em>To reach me directly, please email:<br> 
+                        <a href="mailto:220406073@ogr.ikcu.edu.tr" style="font-size: 1.2em; border-bottom: 1px dashed #FFD700;">220406073@ogr.ikcu.edu.tr</a></em>
+                    </p>
+                    
+                    <div style="display: flex; gap: 50px; flex-wrap: wrap;">
+                        <div>
+                            <form action="#">
+                                <div class="form-row">
+                                    <label for="name">Name:</label>
+                                    <input type="text" id="name" name="name" placeholder="Enter your name">
+                                </div>
+                                <div class="form-row">
+                                    <label for="std-num">Student ID:</label>
+                                    <input type="text" id="std-num" name="std-num" placeholder="e.g. 123456">
+                                </div>
+                                <button type="submit" class="submit-btn">Send Message</button>
+                            </form>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px;">
+                            <p style="margin-top: 0; margin-bottom: 15px; font-weight: 500; color: #FFD700;">Favorite Geomatics Field:</p>
+                            <div style="line-height: 1.8;">
+                                <input type="radio" id="field1" name="fav_field" value="GIS">
+                                <label for="field1">GIS</label><br>
+                                <input type="radio" id="field2" name="fav_field" value="Remote Sensing">
+                                <label for="field2">Remote Sensing</label><br>
+                                <input type="radio" id="field3" name="fav_field" value="Surveying">
+                                <label for="field3">Surveying</label><br>
+                                <input type="radio" id="field4" name="fav_field" value="Photogrammetry">
+                                <label for="field4">Photogrammetry</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside>
+            <section class="section-box">
+                <h2>Useful Links</h2>
+                <div class="section-content" style="line-height: 2;">
+                    <p style="margin:0 0 15px 0;">💼 <a href="https://www.linkedin.com/in/haktancetin" target="_blank">LinkedIn Profile</a><br>
+                    <span style="font-size: 0.85em; color: #7d93c7;">My professional network.</span></p>
+
+                    <p style="margin:0 0 15px 0;">🌐 <a href="https://qgis.org/" target="_blank">QGIS</a><br>
+                    <span style="font-size: 0.85em; color: #7d93c7;">Open source GIS software.</span></p>
+                    
+                    <p style="margin:0 0 15px 0;">🗺️ <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a><br>
+                    <span style="font-size: 0.85em; color: #7d93c7;">A free editable map of the world.</span></p>
+                    
+                    <p style="margin:0;">🎓 <a href="https://ikcu.edu.tr/" target="_blank">İzmir Kâtip Çelebi University</a><br>
+                    <span style="font-size: 0.85em; color: #7d93c7;">University webpage.</span></p>
+                </div>
+            </section>
+
+            <section class="section-box">
+                <h2>Details (Iframe)</h2>
+                <div class="section-content" style="padding: 10px;">
+                    <iframe src="details.html"></iframe>
+                </div>
+            </section>
+
+            <section class="section-box" style="background: transparent; border: none; box-shadow: none;">
+                <div class="photo-gallery">
+                    <img src="WhatsApp Image 2026-10-20 at 23.09.47_2.jpeg" alt="Istanbul View 1">
+                    <img src="WhatsApp Image 2026-10-20 at 23.09.48.jpg" alt="Istanbul View 2">
+                </div>
+                <!-- Afilli cümle güncellendi -->
+                <p class="photo-credit">Through the lens of an enchanting muse, dp.</p>
+            </section>
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Haktan Çetin &ndash; Web GIS Portfolio</p>
+    </footer>
+
+</body>
+</html>
